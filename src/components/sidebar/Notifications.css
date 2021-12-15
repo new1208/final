@@ -1,0 +1,13 @@
+.notif {
+    background-color: cadetblue;
+    padding-bottom: 5vh;
+    padding-left: 3vh;
+    padding-right: 3vh;
+    margin-bottom: 1vh;
+    width: 150vh;
+    height: 10vh;
+    /* justify-content: space-around; */
+    display: flex;
+    border-radius: 3vh;
+  }
+  

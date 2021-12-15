@@ -1,0 +1,13 @@
+.navbar {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: flex-end;
+    background-color: rgb(233, 241, 237);
+    color: rgb(0, 0, 0);
+    width: 95%;
+    padding-right: 10vh;
+  }
+  h3 {
+    margin-left: 10vh;
+  }
+  

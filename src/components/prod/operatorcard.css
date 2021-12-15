@@ -1,0 +1,32 @@
+.op-container {
+    background-color: cadetblue;
+    padding-bottom: 5vh;
+    padding-left: 3vh;
+    padding-right: 3vh;
+    margin-bottom: 1vh;
+    width: 150vh;
+    height: 10vh;
+    /* justify-content: space-around; */
+    display: flex;
+    border-radius: 3vh;
+  }
+  
+  .op {
+    background-image: linear-gradient(0deg, #d8d8d8 0%, #c0c0c0 100%);
+    height: 10vh;
+    width: 100vh;
+    border-radius: 3vh;
+    text-align: center;
+    margin-left: 1vh;
+    margin-right: 1vh;
+  }
+  .op-icon {
+    background-image: linear-gradient(0deg, #d8d8d8 0%, #c0c0c0 100%);
+    height: 10vh;
+    width: 50vh;
+    border-radius: 3vh;
+    margin-left: 1vh;
+    margin-right: 1vh;
+    cursor: pointer;
+  }
+  
