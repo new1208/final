@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import {HashRouter as Router, Switch, Route} from 'react-router-dom';
 import ProductList from './product/ProductList';
 import EmployeeList from './employee/EmployeeList';
 import Main from './ui/Main';
