@@ -31,6 +31,7 @@ export const dataProd =[
 
 export const dataOperators = [
     {
+        
         id: Math.random(),
         name: "新冠肺炎今境外移入增10例",
         objective: "https:/wrewrw4564654werr...",
