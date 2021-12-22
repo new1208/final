@@ -116,13 +116,18 @@ export default function CustomPaginationActionsTable() {
   };
 
   return (
+ 
+
     <TableContainer component={Paper}>
+
       <Table sx={{ minWidth: 500 }} aria-label="custom pagination table">
+
         <TableBody>
           {(rowsPerPage > 0
             ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
             : rows
           ).map((row) => (
+
             <TableRow key={row.name}>
               <TableCell component="th" scope="row">
                 {row.name}
@@ -164,5 +169,7 @@ export default function CustomPaginationActionsTable() {
         </TableFooter>
       </Table>
     </TableContainer>
+
+
   );
 }

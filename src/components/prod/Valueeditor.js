@@ -14,10 +14,13 @@ import {
 } from '@mui/x-data-grid-generator';
 import Button from '@mui/material/Button';
 import { styled } from '@mui/material/styles';
+import AddNews from './AddNews';
 
 export default function ColumnPinningWithCheckboxSelection() {
   return (
+    
     <div style={{ height: 400, width: '100%' }}>
+      <div align="left"><AddNews/></div>
       <DataGridPro
         rows={rows}
         columns={columns}
@@ -26,15 +29,17 @@ export default function ColumnPinningWithCheckboxSelection() {
           pinnedColumns: {
             left: [GRID_CHECKBOX_SELECTION_COL_DEF.field],
             right: ['actions'],
+            
           },
         }}
       />
     </div>
+    
   );
 }
 
 const columns = [
-  { field: 'name', headerName: '新聞標題', width: 160, editable: true },
+  { field: 'name', headerName: '新聞標題', width: 450, editable: true },
   // { field: 'email', headerName: '連結', width: 200, editable: true },
   { field: 'age', headerName: '類別', type: 'number', editable: true },
   {
@@ -54,12 +59,10 @@ const columns = [
   {
     field: 'actions',
     type: 'actions',
-    width: 250,
+    width: 200,
     getActions: () => [
       <Input accept="image/*" id="contained-button-file" multiple type="file" />,
-      <Button variant="contained" component="span">
-        Upload
-      </Button>,
+  
 
       <GridActionsCellItem icon={<EditIcon />} label="Edit" />,
       <GridActionsCellItem icon={<DeleteIcon />} label="Delete" />,

@@ -7,6 +7,7 @@ import Search from './components/navbar/Search';
 import Productiondata from './components/prod/Productiondata';
 import ValueGetterGrid from './components/prod/ValueGetterGrid';
 import ColumnPinningWithCheckboxSelection from './components/prod/Valueeditor';
+import ComboBox from './components/prod/FormEditor';
 
 
 import {useState} from 'react'
@@ -27,11 +28,15 @@ function App() {
     {/* <Context/> */}
     {/* <Productiondata  data={data}/> */}
 
+
     <ValueGetterGrid/>
     {/* 上面這個是表格的內容 */}
 
     <ColumnPinningWithCheckboxSelection/>
     {/* 表格編輯介面 */}
+    
+    {/* <ComboBox/>
+    表格填寫-新增新聞或是編輯新聞可以用 */}
     
     <switch>
     <Route exact path='/'/>

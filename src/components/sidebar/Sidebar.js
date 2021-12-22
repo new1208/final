@@ -26,7 +26,7 @@ import Productiondata from '../prod/Productiondata';
 import SearchIcon from '@mui/icons-material/Search';
 import {  alpha } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
-
+import SimpleDialogDemo from './Account';
 import Avatar from '@mui/material/Avatar';
 import Stack from '@mui/material/Stack';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
@@ -158,8 +158,8 @@ export default function PersistentDrawerLeft() {
               inputProps={{ 'aria-label': 'search' }}
             />
           </Search>
-          {/* <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" /> */}
-
+          {/* <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg"/> */}
+          <SimpleDialogDemo/>
         </Toolbar>
       </AppBar>
       
