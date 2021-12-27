@@ -35,8 +35,8 @@ function App() {
     <ColumnPinningWithCheckboxSelection/>
     {/* 表格編輯介面 */}
     
-    {/* <ComboBox/>
-    表格填寫-新增新聞或是編輯新聞可以用 */}
+    {/* <ComboBox/> */}
+    {/* 表格填寫-新增新聞或是編輯新聞可以用 */}
     
     <switch>
     <Route exact path='/'/>
