@@ -59,17 +59,9 @@ const handleChange =(e) => setForm({...form, [e.target.name]: e.target.value});
           <p>新增一條新聞</p>
           <TextField id="standard-basic01" label="contents" variant="standard" /> <br/> <br/>
           <TextField id="standard-basic02" label="title" variant="standard" /> <br/> <br/>
-          {/* <TextField id="standard-basic03" label="密碼驗證" variant="standard" onChange={handleChange} required/> <br/> <br/> */}
-
-        {/* <label>帳號</label>
-        <input type="text" value={form.name} name='name' onChange={handleChange} required/> */}
-{/*        
-        <label>密碼驗證</label>
-        <input type="text" value={form.objective} name='objective' onChange={handleChange} required/> */}
 
         <div align="center"> <br/>
-        {/* <button className="btn btn-primary" type="submit">Add</button>
-        <button className="btn btn-danger" onClick={closeModal}>Cancel</button>  */}
+
         <Button variant="contained">發布</Button> 
         <Button variant="outlined">取消</Button>
         </div>

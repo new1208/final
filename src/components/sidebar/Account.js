@@ -47,7 +47,7 @@ function SimpleDialog(props) {
               <AddIcon />
             </Avatar>
           </ListItemAvatar>
-          <ListItemText primary="Add account" />
+          <ListItemText primary="Add account" href=""/>
         </ListItem>
       </List>
     </Dialog>

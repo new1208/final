@@ -59,7 +59,7 @@ const columns = [
   {
     field: 'actions',
     type: 'actions',
-    width: 200,
+    width:" 100",
     getActions: () => [
       <Input accept="image/*" id="contained-button-file" multiple type="file" />,
   

@@ -180,6 +180,7 @@ export default function PersistentDrawerLeft() {
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
           </IconButton>
+          
         </DrawerHeader>
         <Divider />
         <List>
@@ -196,7 +197,7 @@ export default function PersistentDrawerLeft() {
         <Divider />
         <List>
           {['台灣', '國際', '體育', 'Covid'].map((text, index) => (
-            <ListItem button key={text}>
+            <ListItem button key={text} >
               <ListItemIcon>
                 <ListAltRoundedIcon/>
                 {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}

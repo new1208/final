@@ -8,7 +8,9 @@ import Productiondata from './components/prod/Productiondata';
 import ValueGetterGrid from './components/prod/ValueGetterGrid';
 import ColumnPinningWithCheckboxSelection from './components/prod/Valueeditor';
 import ComboBox from './components/prod/FormEditor';
-
+import Login from './components/sidebar/Login';
+import Personal_Interface from './components/prod/Personal_Interface';
+import Register from './components/sidebar/Register';
 
 import {useState} from 'react'
 import {dataProd} from './components/Data'
@@ -31,12 +33,22 @@ function App() {
 
     <ValueGetterGrid/>
     {/* 上面這個是表格的內容 */}
+    <br/><br/><br/><br/><br/>
 
     <ColumnPinningWithCheckboxSelection/>
     {/* 表格編輯介面 */}
     
     {/* <ComboBox/> */}
     {/* 表格填寫-新增新聞或是編輯新聞可以用 */}
+    <br/><br/><br/><br/><br/>
+
+    <Register/>
+    <br/><br/><br/><br/><br/>
+
+    <Personal_Interface/>
+  
+    <br/><br/><br/><br/><br/>
+    <Login/>
     
     <switch>
     <Route exact path='/'/>
