@@ -9,7 +9,6 @@ import ValueGetterGrid from './components/prod/ValueGetterGrid';
 import ColumnPinningWithCheckboxSelection from './components/prod/Valueeditor';
 import ComboBox from './components/prod/FormEditor';
 import Login from './components/sidebar/Login';
-import Personal_Interface from './components/prod/Personal_Interface';
 import Register from './components/sidebar/Register';
 
 import {useState} from 'react'
@@ -42,7 +41,6 @@ function App() {
     {/* 表格填寫-新增新聞或是編輯新聞可以用 */}
     <br/><br/><br/><br/><br/>
 
-    <Personal_Interface/>
   
     <br/><br/><br/><br/><br/>
     

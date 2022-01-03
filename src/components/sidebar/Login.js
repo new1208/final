@@ -94,8 +94,15 @@ const ColorButton = styled(Button)(({ theme }) => ({
 
     return (
       <div>{bull}
-        <Button variant="contained" color="success" onClick={openModal} className="btn add-movie" >登入</Button>
-            
+        {/* <Button variant="contained" color="success" onClick={openModal} className="btn add-movie" >登入</Button> */}
+        <Button color="secondary" align="right" variant="outlined" className="btn add-movie" onClick={openModal} align="right"
+        style={{
+          borderRadius: 20,
+          backgroundColor: "#70CD8A",
+          padding: "6px 35px",
+          fontSize: "18px"
+      }}
+      >登入</Button>
           <Modal
             isOpen={modalIsOpen}
             onRequestClose={closeModal}

@@ -33,6 +33,7 @@ import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import Login from './Login';
 import Button from '@mui/material/Button';
 import Register from './Register';
+import Personal_Interface from '../prod/Personal_Interface';
 
 
 const SearchIconWrapper = styled('div')(({ theme }) => ({
@@ -153,7 +154,7 @@ export default function PersistentDrawerLeft() {
           </Typography>
           
           <Login/>   
-          <Register/>     
+          <Register/>     <Personal_Interface/>
         </Toolbar>
       </AppBar>
       
@@ -174,7 +175,7 @@ export default function PersistentDrawerLeft() {
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
           </IconButton>
-          
+
         </DrawerHeader>
         <Divider />
         <List>
@@ -210,6 +211,7 @@ export default function PersistentDrawerLeft() {
         <Typography paragraph>
 
         </Typography>
+        
 
         <Typography paragraph></Typography>
       </Main>

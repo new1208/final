@@ -95,7 +95,14 @@ const ColorButton = styled(Button)(({ theme }) => ({
 
     return (
       <div>{bull}
-        <Button color="secondary" align="right" variant="outlined" className="btn add-movie" onClick={openModal} align="right">註冊</Button>
+        <Button color="secondary" align="right" variant="outlined" className="btn add-movie" onClick={openModal} align="right"
+        style={{
+          borderRadius: 20,
+          backgroundColor: "#7C96BB",
+          padding: "6px 35px",
+          fontSize: "18px"
+      }}
+      >註冊</Button>
 
 
             
@@ -125,6 +132,7 @@ const ColorButton = styled(Button)(({ theme }) => ({
               <div align="center"> <br/>
                 {/* <Button variant="contained" color="success">LOGIN </Button> */}
                 <Button color="secondary" >註冊</Button>
+
               </div>
           
             </form>
