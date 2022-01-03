@@ -31,6 +31,9 @@ import Avatar from '@mui/material/Avatar';
 import Stack from '@mui/material/Stack';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import Login from './Login';
+import Button from '@mui/material/Button';
+import Register from './Register';
+
 
 const SearchIconWrapper = styled('div')(({ theme }) => ({
   padding: theme.spacing(0, 2),
@@ -148,8 +151,9 @@ export default function PersistentDrawerLeft() {
           <Typography variant="h6" noWrap component="div">
             新知｜The News App
           </Typography>
-
-          <Login/>
+          
+          <Login/>   
+          <Register/>     
         </Toolbar>
       </AppBar>
       

@@ -1,41 +1,28 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
+import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-
-const bull = (
-  <Box
-    component="span"
-    sx={{ display: 'inline-block', mx: '2px', transform: 'scale(0.8)' }}
-  >
-    •
-  </Box>
-);
-
-export default function BasicCard() {
+export default function TextFieldSizes() {
   return (
-    <Box sx={{ '& > :not(style)': { m: 1 } }} align="center">
+    <Box
+      component="form"
+      sx={{
+        '& .MuiTextField-root': { m: 1, width: '25ch' },
+      }}
+      noValidate
+      autoComplete="off"
+    >
+      <Typography variant="h5" component="div">個人頁面</Typography><br/>
+      <div>
+      <TextField label="姓名" id="outlined-size-normal01" defaultValue="Name" /><br/>
+      <TextField label="帳號" id="outlined-size-normal02" defaultValue="abctest" /><br/>
+      <TextField label="密碼" id="outlined-size-normal03" defaultValue="123123123" /><br/>
+      <TextField label="電話" id="outlined-size-normal04" defaultValue="0978555666" /><br/>
 
-    <Card sx={{ minWidth: 275 }}>
-      <CardContent>
-
-        <Typography variant="h5" component="div">
-          be{bull}nev{bull}o{bull}lent
-        </Typography>
-        <Typography sx={{ mb: 1.5 }} color="text.secondary">
-          adjective
-        </Typography>
-        <Typography variant="body2">
-          well meaning and kindly.
-          <br />
-          {'"a benevolent smile"'}
-        </Typography>
-      </CardContent>
-
-    </Card>
+      <br/><Button color="success" align="right" variant="outlined" className="btn add-movie"  weigh="">儲存修改</Button>
+      </div>
+      
     </Box>
   );
 }

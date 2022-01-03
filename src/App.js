@@ -42,9 +42,6 @@ function App() {
     {/* 表格填寫-新增新聞或是編輯新聞可以用 */}
     <br/><br/><br/><br/><br/>
 
-    <Register/>
-    <br/><br/><br/><br/><br/>
-
     <Personal_Interface/>
   
     <br/><br/><br/><br/><br/>

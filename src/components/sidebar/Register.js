@@ -1,75 +1,137 @@
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import Input from '@mui/material/Input';
-import InputLabel from '@mui/material/InputLabel';
-import InputAdornment from '@mui/material/InputAdornment';
-import FormControl from '@mui/material/FormControl';
+import React from 'react'
+import Modal from 'react-modal';
+import { useDispatch } from "react-redux";
+import {addOperator} from '../redux/actions';
+import {useState} from 'react'
 import TextField from '@mui/material/TextField';
-import IconButton from '@mui/material/IconButton';
+import Button from '@mui/material/Button';
+import { styled } from '@mui/material/styles';
+import Stack from '@mui/material/Stack';
+import { purple } from '@mui/material/colors';
+import Box from '@mui/material/Box';
+import InputLabel from '@mui/material/InputLabel';
 
-import Visibility from '@mui/icons-material/Visibility';
-import VisibilityOff from '@mui/icons-material/VisibilityOff';
-export default function Personal_Interface(){
-  const [values, setValues] = React.useState({
-    amount: '',
-    password: '',
-    weight: '',
-    weightRange: '',
-    showPassword: false,
-  });
-
-  const handleChange = (prop) => (event) => {
-    setValues({ ...values, [prop]: event.target.value });
+const customStyles = {
+    content : {
+      top                   : '50%',
+      left                  : '50%',
+      right                 : 'auto',
+      bottom                : 'auto',
+      marginRight           : '-50%',
+      transform             : 'translate(-50%, -50%)'
+    }
   };
 
-  const handleClickShowPassword = () => {
-    setValues({
-      ...values,
-      showPassword: !values.showPassword,
-    });
-  };
-
-  const handleMouseDownPassword = (event) => {
-    event.preventDefault();
-  };
+  Modal.setAppElement('#root')
 
 
-  return (
-    <Box sx={{ '& > :not(style)': { m: 1 } }}>
-     <text />註冊頁面內容
-          <Box sx={{}}>
-            {/* <AccountCircle sx={{ color: 'action.active', mr: 1, my: 0.5 }} /> */}
 
-            <TextField  id="inputAccount" label="帳號" variant="standard" /><br/>
+const Login = () => {
+    const dispatch = useDispatch();
 
-            {/* 密碼欄位start */}
-            <FormControl sx={{m: 1, width: '23ch'}} variant="standard">
-              <InputLabel htmlFor="standard-adornment-password">密碼</InputLabel>
-              <Input
-                id="standard-adornment-password"
-                type={values.showPassword ? 'text' : 'password'}
-                value={values.password}
-                onChange={handleChange('password')}
-                endAdornment={
-                  <InputAdornment position="end">
-                    <IconButton
-                      aria-label="toggle password visibility"
-                      onClick={handleClickShowPassword}
-                      onMouseDown={handleMouseDownPassword}
-                    >
-                      {values.showPassword ? <VisibilityOff /> : <Visibility />}
-                    </IconButton>
-                  </InputAdornment>
-                }
-              />
-            </FormControl><br/>
-            {/* 密碼欄位end*/}
-            <TextField id="inputName" label="姓名" variant="standard" /><br/>
-            <TextField id="inputPhone" label="電話" variant="standard" /><br/>
-            <TextField id="inputEmail" label="Email" variant="standard" /><br/>
+    const [modalIsOpen,setIsOpen] = React.useState(false);
+    function openModal() {
+      setIsOpen(true);
+    }
+    function closeModal(){
+        setIsOpen(false);
+      }
 
-          </Box>
-        </Box>
-    
-  );
+const [form, setForm] = useState({
+    name:'',
+    objective:'',
+    inprogress:''
+});
+const handleChange =(e) => setForm({...form, [e.target.name]: e.target.value});
+const BootstrapButton = styled(Button)({
+  boxShadow: 'none',
+  textTransform: 'none',
+  fontSize: 16,
+  padding: '6px 12px',
+  border: '1px solid',
+  lineHeight: 1.5,
+  backgroundColor: '#0063cc',
+  borderColor: '#0063cc',
+  fontFamily: [
+    '-apple-system',
+    'BlinkMacSystemFont',
+    '"Segoe UI"',
+    'Roboto',
+    '"Helvetica Neue"',
+    'Arial',
+    'sans-serif',
+    '"Apple Color Emoji"',
+    '"Segoe UI Emoji"',
+    '"Segoe UI Symbol"',
+  ].join(','),
+  '&:hover': {
+    backgroundColor: '#0069d9',
+    borderColor: '#0062cc',
+    boxShadow: 'none',
+  },
+  '&:active': {
+    boxShadow: 'none',
+    backgroundColor: '#0062cc',
+    borderColor: '#005cbf',
+  },
+  '&:focus': {
+    boxShadow: '0 0 0 0.2rem rgba(0,123,255,.5)',
+  },
+});
+const bull = (
+  <Box
+    component="span"
+    sx={{ display: 'inline-block', mx: '2px', transform: 'scale(0.8)' }}
+  >
+◆  </Box>
+);
+const ColorButton = styled(Button)(({ theme }) => ({
+  color: theme.palette.getContrastText(purple[500]),
+  backgroundColor: purple[500],
+  '&:hover': {
+    backgroundColor: purple[700],
+  },
+}));
+
+    return (
+      <div>{bull}
+        <Button color="secondary" align="right" variant="outlined" className="btn add-movie" onClick={openModal} align="right">註冊</Button>
+
+
+            
+          <Modal
+            isOpen={modalIsOpen}
+            onRequestClose={closeModal}
+            style={customStyles}>
+
+            <form onSubmit={(e)=>{
+              e.preventDefault();
+              let newOperator = {
+                ...form, 
+                id:Math.random(),
+              };
+              dispatch(addOperator(newOperator));
+              closeModal();
+              }}>
+
+              <p color='white'>註冊</p>
+
+              <TextField id="standard-basic01" label="帳號" variant="standard" /> <br/> <br/>
+              <TextField id="standard-basic02" label="密碼" variant="standard" /> <br/> <br/>
+              <TextField id="standard-basic03" label="姓名" variant="standard" /> <br/> <br/>
+              <TextField id="standard-basic04" label="電話" variant="standard" /> <br/> <br/>
+
+
+              <div align="center"> <br/>
+                {/* <Button variant="contained" color="success">LOGIN </Button> */}
+                <Button color="secondary" >註冊</Button>
+              </div>
+          
+            </form>
+          
+          </Modal>
+    </div>
+    )
 }
+
+export default Login
