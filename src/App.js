@@ -39,7 +39,7 @@ function App() {
     <ColumnPinningWithCheckboxSelection/>
     {/* 表格編輯介面 */}
 
-    <EditNEWs/>
+    {/* <EditNEWs/> */}
     {/* 新聞編輯介面 */}
     {/* <ComboBox/> */}
     {/* 表格填寫-新增新聞或是編輯新聞可以用 */}

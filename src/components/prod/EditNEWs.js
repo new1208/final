@@ -1,68 +1,149 @@
-import * as React from 'react';
-import { styled } from '@mui/material/styles';
-import Box from '@mui/material/Box';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemAvatar from '@mui/material/ListItemAvatar';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
-import Avatar from '@mui/material/Avatar';
-import IconButton from '@mui/material/IconButton';
-import FormGroup from '@mui/material/FormGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import Grid from '@mui/material/Grid';
-import Typography from '@mui/material/Typography';
-import FolderIcon from '@mui/icons-material/Folder';
-import DeleteIcon from '@mui/icons-material/Delete';
-import BorderColorIcon from '@mui/icons-material/BorderColor';
-import ComboBox from './FormEditor'
+import React from 'react'
+import Modal from 'react-modal';
+import { useDispatch } from "react-redux";
+import {addOperator} from '../redux/actions';
+import {useState} from 'react'
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+import { styled } from '@mui/material/styles';
+import Stack from '@mui/material/Stack';
+import { purple } from '@mui/material/colors';
+import Box from '@mui/material/Box';
+import BorderColorIcon from '@mui/icons-material/BorderColor';
+import IconButton from '@mui/material/IconButton';
+import Typography from '@mui/material/Typography';
+import ComboBox from './FormEditor'
+const customStyles = {
+    content : {
+      top                   : '50%',
+      left                  : '50%',
+      right                 : 'auto',
+      bottom                : 'auto',
+      marginRight           : '-50%',
+      transform             : 'translate(-50%, -50%)'
+    }
+  };
 
-function generate(element) {
-  return [0, 1, 2].map((value) =>
-    React.cloneElement(element, {
-      key: value,
-    }),
-  );
-}
+  Modal.setAppElement('#root')
 
-const Demo = styled('div')(({ theme }) => ({
-  backgroundColor: theme.palette.background.paper,
+
+
+const Login = () => {
+    const dispatch = useDispatch();
+
+    const [modalIsOpen,setIsOpen] = React.useState(false);
+    function openModal() {
+      setIsOpen(true);
+    }
+    function closeModal(){
+        setIsOpen(false);
+      }
+
+const [form, setForm] = useState({
+    name:'',
+    objective:'',
+    inprogress:''
+});
+const handleChange =(e) => setForm({...form, [e.target.name]: e.target.value});
+const BootstrapButton = styled(Button)({
+  boxShadow: 'none',
+  textTransform: 'none',
+  fontSize: 16,
+  padding: '6px 12px',
+  border: '1px solid',
+  lineHeight: 1.5,
+  backgroundColor: '#0063cc',
+  borderColor: '#0063cc',
+  fontFamily: [
+    '-apple-system',
+    'BlinkMacSystemFont',
+    '"Segoe UI"',
+    'Roboto',
+    '"Helvetica Neue"',
+    'Arial',
+    'sans-serif',
+    '"Apple Color Emoji"',
+    '"Segoe UI Emoji"',
+    '"Segoe UI Symbol"',
+  ].join(','),
+  '&:hover': {
+    backgroundColor: '#0069d9',
+    borderColor: '#0062cc',
+    boxShadow: 'none',
+  },
+  '&:active': {
+    boxShadow: 'none',
+    backgroundColor: '#0062cc',
+    borderColor: '#005cbf',
+  },
+  '&:focus': {
+    boxShadow: '0 0 0 0.2rem rgba(0,123,255,.5)',
+  },
+});
+const bull = (
+  <Box
+    component="span"
+    sx={{ display: 'inline-block', mx: '2px', transform: 'scale(0.8)' }}
+  >
+◆  </Box>
+);
+const ColorButton = styled(Button)(({ theme }) => ({
+  color: theme.palette.getContrastText(purple[500]),
+  backgroundColor: purple[500],
+  '&:hover': {
+    backgroundColor: purple[700],
+  },
 }));
 
-export default function InteractiveList() {
-  const [dense, setDense] = React.useState(false);
-  const [secondary, setSecondary] = React.useState(false);
+    return (
+      <div align="center">
+        {/* <Button variant="contained" color="success" onClick={openModal} className="btn add-movie" >登入</Button> */}
+        {/* <Button color="secondary" align="right" variant="outlined" className="btn add-movie" onClick={openModal} align="right"
+        style={{
+          borderRadius: 20,
+          backgroundColor: "#70CD8A",
+          padding: "6px 35px",
+          fontSize: "18px"
+      }}
+      >登入</Button> */}
+      <Box sx={{ flexGrow: 1, maxWidth: "90%"}} ></Box>
+      <IconButton edge="end" aria-label="delete" onClick={openModal}><BorderColorIcon /></IconButton>
 
-  return (
+          <Modal
+            isOpen={modalIsOpen}
+            onRequestClose={closeModal}
+            style={customStyles}>
 
-    <div align="center">
-    <Box sx={{ flexGrow: 1, maxWidth: "90%"}} >
+            <form onSubmit={(e)=>{
+              e.preventDefault();
+              let newOperator = {
+                ...form, 
+                id:Math.random(),
+              };
+              dispatch(addOperator(newOperator));
+              closeModal();
+              }}>
 
-        <Grid item xs={12} md={6}>
-          <Typography sx={{ mt: 4, mb: 2 }} variant="h6" component="div">
-            新聞編輯
-          </Typography>
-          <Demo>
+              <Typography sx={{ mt: 4, mb: 2 }} variant="h6" component="div">
+                新聞編輯
+              </Typography>  
               
-            <TextField fullWidth label="新聞標題" id="fullWidth" sx={{ width: 600 }} defaultValue="Omicron恐已進入美國社區 美第2例確診無非洲旅遊史去過紐約"/><br/><br/>
-            <TextField fullWidth label="新聞連結" id="fullWidth" sx={{ width: 600 }} defaultValue="https://www.chinatimes.com/realtimenews/20211203000653-260408?chdtv"/><br/><br/>
-
-            <ComboBox/><br/><br/>
+              <TextField fullWidth label="新聞標題" id="fullWidth" sx={{ width: 600 }} defaultValue="Omicron恐已進入美國社區 美第2例確診無非洲旅遊史去過紐約"/><br/><br/>
+              <TextField fullWidth label="新聞連結" id="fullWidth" sx={{ width: 600 }} defaultValue="https://www.chinatimes.com/realtimenews/20211203000653-260408?chdtv%22"/><br/><br/>
+              <ComboBox/><br/><br/>
             {/* 這個是類別選擇器，不要可以碼掉 */}
 
             <Button variant="contained" href="#contained-buttons">
               儲存
-            </Button>
-
-          </Demo>
-        </Grid>
-    </Box>
-
-
-
+            </Button>     
+            <Button variant="text" href="#contained-buttons">
+              取消
+            </Button>      
+            </form>
+          
+          </Modal>
     </div>
-  );
+    )
 }
+
+export default Login
