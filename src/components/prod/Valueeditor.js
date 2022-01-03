@@ -1,127 +1,70 @@
 import * as React from 'react';
-import DeleteIcon from '@mui/icons-material/Delete';
-import EditIcon from '@mui/icons-material/Edit';
-import {
-  DataGridPro,
-  GridActionsCellItem,
-  GRID_CHECKBOX_SELECTION_COL_DEF,
-} from '@mui/x-data-grid-pro';
-import {
-  randomCreatedDate,
-  randomTraderName,
-  randomEmail,
-  randomUpdatedDate,
-} from '@mui/x-data-grid-generator';
-import Button from '@mui/material/Button';
 import { styled } from '@mui/material/styles';
-import AddNews from './AddNews';
-
-export default function ColumnPinningWithCheckboxSelection() {
-  return (
-    
-    <div style={{ height: 400, width: '100%' }}>
-      <div align="left"><AddNews/></div>
-      <DataGridPro
-        rows={rows}
-        columns={columns}
-        checkboxSelection
-        initialState={{
-          pinnedColumns: {
-            left: [GRID_CHECKBOX_SELECTION_COL_DEF.field],
-            right: ['actions'],
-            
-          },
-        }}
-      />
-    </div>
-    
+import Box from '@mui/material/Box';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemAvatar from '@mui/material/ListItemAvatar';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
+import Avatar from '@mui/material/Avatar';
+import IconButton from '@mui/material/IconButton';
+import FormGroup from '@mui/material/FormGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
+import Grid from '@mui/material/Grid';
+import Typography from '@mui/material/Typography';
+import FolderIcon from '@mui/icons-material/Folder';
+import DeleteIcon from '@mui/icons-material/Delete';
+import BorderColorIcon from '@mui/icons-material/BorderColor';
+function generate(element) {
+  return [0, 1, 2].map((value) =>
+    React.cloneElement(element, {
+      key: value,
+    }),
   );
 }
 
-const columns = [
-  { field: 'name', headerName: '新聞標題', width: 450, editable: true },
-  // { field: 'email', headerName: '連結', width: 200, editable: true },
-  { field: 'age', headerName: '類別', type: 'number', editable: true },
-  {
-    field: 'dateCreated',
-    headerName: '更新',
-    type: 'date',
-    width: 180,
-    editable: true,
-  },
-  {
-    field: 'lastLogin',
-    headerName: '上傳日期',
-    type: 'date',
-    width: 220,
-    editable: true,
-  },
-  {
-    field: 'actions',
-    type: 'actions',
-    width:" 100",
-    getActions: () => [
-      <Input accept="image/*" id="contained-button-file" multiple type="file" />,
-  
+const Demo = styled('div')(({ theme }) => ({
+  backgroundColor: theme.palette.background.paper,
+}));
 
-      <GridActionsCellItem icon={<EditIcon />} label="Edit" />,
-      <GridActionsCellItem icon={<DeleteIcon />} label="Delete" />,
-    ],
-  },
-];
-const Input = styled('input')({
-  display: 'none',
-});
+export default function InteractiveList() {
+  const [dense, setDense] = React.useState(false);
+  const [secondary, setSecondary] = React.useState(false);
 
-const rows = [
-  // {
-  //   id: 1,
-  //   name: randomTraderName(),
-  //   email: randomEmail(),
-  //   age: "台灣",
-  //   dateCreated: randomCreatedDate(),
-  //   lastLogin: randomUpdatedDate(),
-  // },
+  return (
 
-  {
-    id: 1,
-    name: "王力宏暫退演藝圈還不夠！《環時》重砲：失德藝人必須涼",
-    email: randomEmail(),
-    age: "台灣",
-    dateCreated: randomCreatedDate(),
-    lastLogin: randomUpdatedDate() ,
-    
-  },
-  {
-    id: 2,
-    name: randomTraderName(),
-    email: randomEmail(),
-    age: "國際",
-    dateCreated: randomCreatedDate(),
-    lastLogin: randomUpdatedDate(),
-  },
-  {
-    id: 3,
-    name: randomTraderName(),
-    email: randomEmail(),
-    age: "體育",
-    dateCreated: randomCreatedDate(),
-    lastLogin: randomUpdatedDate(),
-  },
-  {
-    id: 4,
-    name: randomTraderName(),
-    email: randomEmail(),
-    age: "Covid",
-    dateCreated: randomCreatedDate(),
-    lastLogin: randomUpdatedDate(),
-  },
-  {
-    id: 5,
-    name: randomTraderName(),
-    email: randomEmail(),
-    age: "台灣",
-    dateCreated: randomCreatedDate(),
-    lastLogin: randomUpdatedDate(),
-  },
-];
+    <div align="center">
+    <Box sx={{ flexGrow: 1, maxWidth: "90%"}} >
+
+        <Grid item xs={12} md={6}>
+          <Typography sx={{ mt: 4, mb: 2 }} variant="h6" component="div">
+            新聞編輯列表介面
+          </Typography>
+          <Demo>
+            <List dense={dense}>
+              
+            <ListItem
+                  secondaryAction={
+                    <IconButton edge="end" aria-label="delete">
+                      <BorderColorIcon />
+                      <DeleteIcon />
+                    </IconButton>
+                  }
+                >
+                  <ListItemAvatar><Avatar><FolderIcon /></Avatar></ListItemAvatar>
+
+                  <ListItemText
+                    primary="Omicron恐已進入美國社區 美第2例確診無非洲旅遊史去過紐約"
+
+                    secondary={secondary ? 'Secondary text' : null}/>
+                    
+              </ListItem>
+              
+            </List>
+          </Demo>
+        </Grid>
+    </Box>
+    </div>
+  );
+}

@@ -48,7 +48,7 @@ function App() {
     <Personal_Interface/>
   
     <br/><br/><br/><br/><br/>
-    <Login/>
+    
     
     <switch>
     <Route exact path='/'/>

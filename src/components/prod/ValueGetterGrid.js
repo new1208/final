@@ -185,7 +185,6 @@ export default function CustomPaginationActionsTable() {
     </TableContainer>*/
 <Container maxWidth="sm">
 
- {/* 台灣的新聞start */}
     <Box sx={{ width: '100%', maxWidth: 600, bgcolor: 'background.paper'}}>
         
             <List sx={{border: 1, borderRadius: 10, borderColor: 'primary.main'}}>
@@ -207,31 +206,8 @@ export default function CustomPaginationActionsTable() {
             </List>
         
         </Box>
-{/* 台灣的新聞end */}
 
-              <br/>
-        <Box sx={{ width: '100%', maxWidth: 600, bgcolor: 'background.paper'}}>
-        
-        <List sx={{border: 1, borderRadius: 10, borderColor: '#FF4D00'}}>
-        <ListItem  disablePadding>
-            <ListItemButton component="a" href="https://www.chinatimes.com/realtimenews/20211203000653-260408">
-            <ListItemText primary="不肯供出500枚金幣寶藏下落 科學家被判入獄日繳萬元罰金" />
-            </ListItemButton>
-        </ListItem>
-        <ListItem  disablePadding>
-            <ListItemButton component="a" href="https://udn.com/news/story/6809/5934611">
-            <ListItemText primary="富士山周邊一夜三震 網友驚「日本要沉沒了？」氣象廳回應" />
-            </ListItemButton>
-        </ListItem>
-        <ListItem  disablePadding>
-            <ListItemButton component="a" href="https://udn.com/news/story/122190/5935357">
-            <ListItemText primary="百貨賣場最快下周設站開打 僅提供1款疫苗廠牌防誤打" />
-            </ListItemButton>
-        </ListItem>
-        </List>
-    
-    </Box>
-      </Container>
+  </Container>
 
   );
 }

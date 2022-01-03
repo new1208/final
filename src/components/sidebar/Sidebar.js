@@ -30,6 +30,7 @@ import SimpleDialogDemo from './Account';
 import Avatar from '@mui/material/Avatar';
 import Stack from '@mui/material/Stack';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
+import Login from './Login';
 
 const SearchIconWrapper = styled('div')(({ theme }) => ({
   padding: theme.spacing(0, 2),
@@ -147,19 +148,8 @@ export default function PersistentDrawerLeft() {
           <Typography variant="h6" noWrap component="div">
             新知｜The News App
           </Typography>
-          
-                  {/* 9999999999999999999999999999999999999999999999999999999999999999999999999 */}
-           <Search>
-            <SearchIconWrapper>
-              <SearchIcon />
-            </SearchIconWrapper>
-            <StyledInputBase
-              placeholder="Search…"
-              inputProps={{ 'aria-label': 'search' }}
-            />
-          </Search>
-          {/* <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg"/> */}
-          <SimpleDialogDemo/>
+
+          <Login/>
         </Toolbar>
       </AppBar>
       
