@@ -48,6 +48,8 @@ export default function InteractiveList() {
           <Demo>
               
             <TextField fullWidth label="新聞標題" id="fullWidth" sx={{ width: 600 }} defaultValue="Omicron恐已進入美國社區 美第2例確診無非洲旅遊史去過紐約"/><br/><br/>
+            <TextField fullWidth label="新聞連結" id="fullWidth" sx={{ width: 600 }} defaultValue="https://www.chinatimes.com/realtimenews/20211203000653-260408?chdtv"/><br/><br/>
+
             <ComboBox/><br/><br/>
             {/* 這個是類別選擇器，不要可以碼掉 */}
 
