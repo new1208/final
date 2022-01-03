@@ -14,7 +14,7 @@ export default function ComboBox() {
       options={top100Films}
       sx={{ width: 600 }}
       renderInput={(params) => <TextField {...params} label="選擇新聞類別" />}
-
+      defaultValue="台灣"
     />
   );
 }

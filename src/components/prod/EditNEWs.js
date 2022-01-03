@@ -16,6 +16,9 @@ import Typography from '@mui/material/Typography';
 import FolderIcon from '@mui/icons-material/Folder';
 import DeleteIcon from '@mui/icons-material/Delete';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
+import ComboBox from './FormEditor'
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
 
 function generate(element) {
   return [0, 1, 2].map((value) =>
@@ -40,34 +43,24 @@ export default function InteractiveList() {
 
         <Grid item xs={12} md={6}>
           <Typography sx={{ mt: 4, mb: 2 }} variant="h6" component="div">
-            新聞編輯列表介面
+            新聞編輯
           </Typography>
           <Demo>
-            <List dense={dense}>
               
-            <ListItem
+            <TextField fullWidth label="新聞標題" id="fullWidth" sx={{ width: 600 }} defaultValue="Omicron恐已進入美國社區 美第2例確診無非洲旅遊史去過紐約"/><br/><br/>
+            <ComboBox/><br/><br/>
+            {/* 這個是類別選擇器，不要可以碼掉 */}
 
-                  secondaryAction={
+            <Button variant="contained" href="#contained-buttons">
+              儲存
+            </Button>
 
-                  <IconButton edge="end" aria-label="delete">
-                  {/* <BorderColorIcon /> */}
-
-                  <DeleteIcon />
-                  </IconButton>}
-                >
-                  {/* <ListItemAvatar><Avatar><FolderIcon /></Avatar></ListItemAvatar> */}
-
-                  <ListItemText
-                    primary="Omicron恐已進入美國社區 美第2例確診無非洲旅遊史去過紐約"
-
-                    secondary={secondary ? 'Secondary text' : null}/>
-                    <IconButton edge="end" aria-label="delete"><BorderColorIcon /></IconButton>
-              </ListItem>
-              
-            </List>
           </Demo>
         </Grid>
     </Box>
+
+
+
     </div>
   );
 }

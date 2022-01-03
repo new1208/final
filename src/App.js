@@ -6,6 +6,8 @@ import Sidebar from './components/sidebar/Sidebar';
 import Search from './components/navbar/Search';
 import Productiondata from './components/prod/Productiondata';
 import ValueGetterGrid from './components/prod/ValueGetterGrid';
+import EditNEWs from './components/prod/EditNEWs';
+
 import ColumnPinningWithCheckboxSelection from './components/prod/Valueeditor';
 import ComboBox from './components/prod/FormEditor';
 import Login from './components/sidebar/Login';
@@ -36,7 +38,9 @@ function App() {
 
     <ColumnPinningWithCheckboxSelection/>
     {/* 表格編輯介面 */}
-    
+
+    <EditNEWs/>
+    {/* 新聞編輯介面 */}
     {/* <ComboBox/> */}
     {/* 表格填寫-新增新聞或是編輯新聞可以用 */}
     <br/><br/><br/><br/><br/>
