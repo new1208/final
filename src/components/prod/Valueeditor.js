@@ -17,7 +17,9 @@ import FolderIcon from '@mui/icons-material/Folder';
 import DeleteIcon from '@mui/icons-material/Delete';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import EditNEWs from './EditNEWs';
-
+import Button from '@mui/material/Button';
+import AddIcon from '@mui/icons-material/Add';
+import AddNews from "./AddNews";
 function generate(element) {
   return [0, 1, 2].map((value) =>
     React.cloneElement(element, {
@@ -62,11 +64,13 @@ export default function InteractiveList() {
                     primary="Omicron恐已進入美國社區 美第2例確診無非洲旅遊史去過紐約"
 
                     secondary={secondary ? 'Secondary text' : null}/>
-                    <EditNEWs/>
+                    <EditNEWs/>           
               </ListItem>
               
             </List>
           </Demo>
+          {/* <AddIcon variant="contained" href="#contained-buttons"/> */}
+          <AddNews/>    
         </Grid>
     </Box>
     </div>
