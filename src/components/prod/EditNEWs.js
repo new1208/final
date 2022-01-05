@@ -67,11 +67,7 @@ const EditNews = (props) => {
     const [isLoading, setIsLoading] = useState(false);
     const [delete_id, setDelete_id] = useState(0);
     
-    const delete_news = async function(key) {
-      setDelete_id(idd);
-      //console.log(idd);
-      await deleteDoc(doc(db, "news", delete_id));
-    }
+    
 
     
     useEffect(()=>{
