@@ -50,6 +50,15 @@ const EditNews = (props) => {
         {title:"", newslink:"", id:""}
       ]);
 
+
+      const [IsOpen,setOpen] = React.useState(false);
+      function open() {
+        setOpen(true);
+      }
+      function close(){
+          setOpen(false);
+        }
+
     const [before, setBefore] = useState("0");
     const [beforelink, setBeforelink] = useState("0");
     
@@ -58,6 +67,12 @@ const EditNews = (props) => {
     const [isLoading, setIsLoading] = useState(false);
     const [delete_id, setDelete_id] = useState(0);
     
+    const delete_news = async function(key) {
+      setDelete_id(idd);
+      //console.log(idd);
+      await deleteDoc(doc(db, "news", delete_id));
+    }
+
     
     useEffect(()=>{
       async function readData() {
@@ -91,28 +106,31 @@ const EditNews = (props) => {
 
       const db = getFirestore();
       try{
-        console.log("before");
+        console.log("before", news);
         await updateDoc(doc(db,"news",idd),{
 
           title:news.title,
 
           newslink:news.newslink
+          
 
         });
 
         console.log("after");
-      }catch{
+      }catch (error){ console.log("error", error);
+
 
       }
     }
 
     const handleClick = function(e) {
+      console.log("click", e.target);
       setNews({...news, [e.target.name]:e.target.value} )
     }
 
     const dispatch = useDispatch();
 
-    const [modalIsOpen,setIsOpen] = React.useState(false);
+    const [Open,setIsOpen] = React.useState(false);
     function openModal() {
       setIsOpen(true);
     }
@@ -125,7 +143,8 @@ const [form, setForm] = useState({
     objective:'',
     inprogress:''
 });
-const handleChange =(e) => setNews({...news, [e.target.name]: e.target.value});
+
+//const handleChange =(e) => setNews({...news, [e.target.name]: e.target.value});
 
 
 
@@ -194,7 +213,7 @@ const ColorButton = styled(Button)(({ theme }) => ({
       <IconButton edge="end" aria-label="delete" onClick={openModal}><BorderColorIcon /></IconButton>
 
           <Modal
-            isOpen={modalIsOpen}
+            isOpen={Open}
             onRequestClose={closeModal}
             style={customStyles}>
 
@@ -212,8 +231,8 @@ const ColorButton = styled(Button)(({ theme }) => ({
                 新聞編輯
               </Typography>  
           
-              新聞標題：<Input type="text" name="title" value={news.title} defaultValue={before} onChange={handleClick}/><br/>
-              新聞網址：<Input type="text" name="newslink" value={news.newslink} defaultValue={beforelink} onChange={handleClick}/><br/>
+              新聞標題：<Input type="text" name="title" value={news.title} /*defaultValue={before}*/ onChange={handleClick}/><br/>
+              新聞網址：<Input type="text" name="newslink" value={news.newslink} /*defaultValue={beforelink}*/ onChange={handleClick}/><br/>
 
               
               {/*<ComboBox/>*/}<br/><br/>
@@ -222,12 +241,13 @@ const ColorButton = styled(Button)(({ theme }) => ({
             <Button onClick={update} variant="contained" href="#contained-buttons">
               儲存
             </Button>     
-            <Button variant="text" href="#contained-buttons">
+            <Button onClick={close} variant="text" href="#contained-buttons">
               取消
             </Button>      
             </form>
           
           </Modal>
+          
     </div>
     )
 }

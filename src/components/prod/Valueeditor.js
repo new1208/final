@@ -27,12 +27,11 @@ import { getAnalytics } from "firebase/analytics";
 import { getFirestore } from "firebase/firestore";
 import { collection, addDoc, getDocs, deleteDoc, doc, updateDoc} from "firebase/firestore";
 import {AuthContext, STATUS} from '../../AuthContext';
-import {EditNews} from "./EditNEWs";
 
+
+import {setDeleted,deleted,FontAwesomeIcon} from '@material-ui/icons/Delete';
 const firebaseApp = initializeApp(config);
 const db = getFirestore();
-
-
 function generate(element) {
   return [0, 1, 2].map((value) =>
     React.cloneElement(element, {
@@ -80,7 +79,20 @@ const [delete_id, setDelete_id] = useState(0);
   console.log("news", news)
   
   const handleChange =(e) => setNews({...news, [e.target.name]: e.target.value});
+  // 透過id進行刪除
+  const deleteData = async function(id){
+    try{
+      setIsLoading(true);
+      await deleteDoc(doc(db, "news", id));
 
+      console.log("deleted");
+      setDeleted(deleted+1);
+      setIsLoading(false);
+    }
+    catch (error){
+      console.log(error);
+    }
+  }
   return (
 
     <div align="center">
@@ -92,14 +104,18 @@ const [delete_id, setDelete_id] = useState(0);
           </Typography>
           <Demo>
             <List dense={dense}>
-              
-            {news.map((n, index) => 
-              <ListItem key={n.id}> 
-              {/* <ListItemAvatar><Avatar><FolderIcon /></Avatar></ListItemAvatar> */}
-                <ListItemText primary={n.title}/>
-                  <EditNEWs edit_id={n.id}/>           
-                </ListItem> 
-            )}
+            
+              {news.map((n, index) => 
+                <ListItem key={n.id}> 
+                {/* <ListItemAvatar><Avatar><FolderIcon /></Avatar></ListItemAvatar> */}
+                  <ListItemText primary={n.title}/>
+                    <EditNEWs edit_id={n.id}/>        
+                    <IconButton edge="end" aria-label="delete" onClick={()=>deleteData(n.id)}>
+                      <DeleteIcon />
+                    </IconButton> 
+                  </ListItem> 
+              )}
+            
             </List>
           </Demo>
           {/* <AddIcon variant="contained" href="#contained-buttons"/> */}
