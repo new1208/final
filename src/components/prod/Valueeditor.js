@@ -20,6 +20,19 @@ import EditNEWs from './EditNEWs';
 import Button from '@mui/material/Button';
 import AddIcon from '@mui/icons-material/Add';
 import AddNews from "./AddNews";
+import {useState, useEffect, useContext} from 'react'
+import {config} from '../../firebaseConfig';
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+import { getFirestore } from "firebase/firestore";
+import { collection, addDoc, getDocs, deleteDoc, doc, updateDoc} from "firebase/firestore";
+import {AuthContext, STATUS} from '../../AuthContext';
+import {EditNews} from "./EditNEWs";
+
+const firebaseApp = initializeApp(config);
+const db = getFirestore();
+
+
 function generate(element) {
   return [0, 1, 2].map((value) =>
     React.cloneElement(element, {
@@ -32,9 +45,41 @@ const Demo = styled('div')(({ theme }) => ({
   backgroundColor: theme.palette.background.paper,
 }));
 
+
+
 export default function InteractiveList() {
+
+  const authContext = useContext(AuthContext);
   const [dense, setDense] = React.useState(false);
   const [secondary, setSecondary] = React.useState(false);
+  const [news, setNews] = useState([]);
+
+const [isLoading, setIsLoading] = useState(false);
+const [delete_id, setDelete_id] = useState(0);
+
+
+  useEffect(()=>{
+    async function readData() {
+  
+      setIsLoading(true);
+      const querySnapshot = await getDocs(collection(db, "news"));
+      const temp = [];
+      
+      querySnapshot.forEach((doc) => {
+      // doc.data() is never undefined for query doc snapshots
+        console.log(doc.id, " => ", doc.data());
+        temp.push({title:doc.data().title, newslink:doc.data().newslink, id:doc.id});
+       // setNews((current)=> [...current, {title:doc.data().title, newslink:doc.data().newslink, id:doc.id}])
+      });
+      console.log("List",temp);
+      setNews([...temp]);
+      setIsLoading(false);
+    }
+    readData();
+  }, [db]);
+  console.log("news", news)
+  
+  const handleChange =(e) => setNews({...news, [e.target.name]: e.target.value});
 
   return (
 
@@ -48,25 +93,13 @@ export default function InteractiveList() {
           <Demo>
             <List dense={dense}>
               
-            <ListItem
-
-                  secondaryAction={
-
-                  <IconButton edge="end" aria-label="delete">
-                  {/* <BorderColorIcon /> */}
-
-                  <DeleteIcon />
-                  </IconButton>}
-                >
-                  {/* <ListItemAvatar><Avatar><FolderIcon /></Avatar></ListItemAvatar> */}
-
-                  <ListItemText
-                    primary="Omicron恐已進入美國社區 美第2例確診無非洲旅遊史去過紐約"
-
-                    secondary={secondary ? 'Secondary text' : null}/>
-                    <EditNEWs/>           
-              </ListItem>
-              
+            {news.map((n, index) => 
+              <ListItem key={n.id}> 
+              {/* <ListItemAvatar><Avatar><FolderIcon /></Avatar></ListItemAvatar> */}
+                <ListItemText primary={n.title}/>
+                  <EditNEWs edit_id={n.id}/>           
+                </ListItem> 
+            )}
             </List>
           </Demo>
           {/* <AddIcon variant="contained" href="#contained-buttons"/> */}

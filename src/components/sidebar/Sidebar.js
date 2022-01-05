@@ -1,6 +1,3 @@
-
-
-
 import * as React from 'react';
 import { styled, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
@@ -34,7 +31,18 @@ import Login from './Login';
 import Button from '@mui/material/Button';
 import Register from './Register';
 import Personal_Interface from '../prod/Personal_Interface';
+import {useState, useEffect, useContext} from 'react'
+import {AuthContext, STATUS} from '../../AuthContext';
+import {getApps, initializeApp} from "firebase/app";
+import {getAuth, signInWithEmailAndPassword} from "firebase/auth";
+import {config} from '../../firebaseConfig';
+import Logout from './Logout';
 
+
+
+const to_HOME = function(){
+  window.location.href = 'src/index.js';
+};
 
 const SearchIconWrapper = styled('div')(({ theme }) => ({
   padding: theme.spacing(0, 2),
@@ -124,6 +132,7 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 }));
 
 export default function PersistentDrawerLeft() {
+  const [status, setStatus] = useState(STATUS.toSignUp);
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
@@ -152,9 +161,16 @@ export default function PersistentDrawerLeft() {
           <Typography variant="h6" noWrap component="div">
             新知｜The News App
           </Typography>
-          
-          <Login/>   
-          <Register/>     <Personal_Interface/>
+          <div>
+            {status===0?
+            <Register setStatus={setStatus}/>
+            :status===1?
+            <Login setStatus={setStatus}/>
+            :
+            <Logout setStatus={setStatus}/>
+            }
+          </div>
+
         </Toolbar>
       </AppBar>
       
@@ -180,7 +196,7 @@ export default function PersistentDrawerLeft() {
         <Divider />
         <List>
           {['HOME'].map((text, index) => (
-            <ListItem button key={text}>
+            <ListItem button key={text} onClick={to_HOME}>
               <ListItemIcon>
               <HomeRoundedIcon />
                 {/* {index % 2 === 0 ? <HomeRoundedIcon /> : <ListAltRoundedIcon />} */}
@@ -190,17 +206,7 @@ export default function PersistentDrawerLeft() {
           ))}
         </List>
         <Divider />
-        <List>
-          {['台灣', '國際', '體育', 'Covid'].map((text, index) => (
-            <ListItem button key={text} >
-              <ListItemIcon>
-                <ListAltRoundedIcon/>
-                {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
+        
       </Drawer>
 
       <Main open={open}>

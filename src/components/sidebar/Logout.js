@@ -11,7 +11,7 @@ import { purple } from '@mui/material/colors';
 import Box from '@mui/material/Box';
 import {AuthContext, STATUS} from '../../AuthContext';
 import {getApps, initializeApp} from "firebase/app";
-import {getAuth, signInWithEmailAndPassword} from "firebase/auth";
+import {getAuth, signOut} from "firebase/auth";
 import {config} from '../../firebaseConfig';
 
 const customStyles = {
@@ -28,61 +28,27 @@ const customStyles = {
   Modal.setAppElement('#root')
 
 
-const Login = (props) => {
+const Logout = (props) => {
 
     if(getApps().length===0){
       initializeApp(config);
     }
     
-
-    const [account, setAccount] = useState({email:"",password:"", displayName:""});
     const [message, setMessage] = useState("");
     const authContext = useContext(AuthContext);
 
-    const handleChange = function(e){
-      setAccount({...account,[e.target.name]:e.target.value});
-    }
-
     const handleSubmit = async function() {
-      try {
-          const auth = getAuth();
-          const res = await signInWithEmailAndPassword(auth, account.email, account.password);
-          if (res){
-              
-              props.setStatus(2);
-          }
-          setMessage("");
-          authContext.setStatus(STATUS.toSignOut);
-      }catch(error) {
-          setMessage(""+error);
-      }
+        try{
+            const auth = getAuth();
+            await signOut(auth);
+            setMessage("");
+            props.setStatus(1);
+        }catch(error){
+            setMessage(""+error);
+            props.setStatus(1);
+        }
     }
 
-    const dispatch = useDispatch();
-
-    const [modalIsOpen,setIsOpen] = React.useState(false);
-    function openModal() {
-      setIsOpen(true);
-    }
-    function closeModal(){
-        setIsOpen(false);
-      }
-    function closeModal_and_submit(){
-      
-      handleSubmit();
-      setIsOpen(false);
-    }
-
-const [form, setForm] = useState({
-    name:'',
-    objective:'',
-    inprogress:''
-});
-
-const changeStatus = function() {
-  props.setStatus(0);
- // authContext.setStatus(STATUS.toSignUp);
-}
 
 const BootstrapButton = styled(Button)({
   boxShadow: 'none',
@@ -137,44 +103,17 @@ const ColorButton = styled(Button)(({ theme }) => ({
     return (
       <div>{bull}
         {/* <Button variant="contained" color="success" onClick={openModal} className="btn add-movie" >登入</Button> */}
-        <Button color="secondary" align="right" variant="outlined" className="btn add-movie" onClick={openModal} align="right"
+        <Button color="secondary" align="right" variant="outlined" className="btn add-movie" onClick={handleSubmit} align="right"
         style={{
           borderRadius: 20,
           backgroundColor: "#70CD8A",
           padding: "6px 35px",
           fontSize: "18px"
       }}
-      >登入</Button>
-          <Modal
-            isOpen={modalIsOpen}
-            onRequestClose={closeModal}
-            style={customStyles}>
-
-            <form onSubmit={(e)=>{
-              e.preventDefault();
-              let newOperator = {
-                ...form, 
-                id:Math.random(),
-              };
-              dispatch(addOperator(newOperator));
-              closeModal();
-              }}>
-
-                <p color='white'>登入</p>
-                <TextField id="standard-basic01" name="email" value={account.email} label="Email" variant="standard" onChange={handleChange}/> <br/> <br/>
-                <TextField id="standard-basic02" name="password" value={account.password} label="密碼" variant="standard" onChange={handleChange} autoComplete="current-password"/> <br/>{message} <br/>
-                
-                <div align="center"> <br/>
-                  <Button variant="contained" color="success" onClick={closeModal_and_submit}>LOGIN </Button>
-                  &nbsp;&nbsp;
-                  <Button variant="contained" color="success" onClick={changeStatus}>註冊 </Button>
-                </div>
+      >登出</Button>
           
-            </form>
-          
-          </Modal>
     </div>
     )
 }
 
-export default Login
+export default Logout

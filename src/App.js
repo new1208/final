@@ -18,10 +18,13 @@ import {dataProd} from './components/Data'
 import { BrowserRouter, Route, Switch } from "react-router-dom"
 import Notifications from './components/sidebar/Notifications';
 
+
+
 // import Context from './components/context/Context';
 
 
 function App() {
+
   const [data, setData] = useState(dataProd);
   return (
     <div className="App" >
